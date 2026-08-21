@@ -96,7 +96,10 @@ const mcp = new Server(
       '- When you finish something, say so naturally, and check in on what\'s next when it makes sense — ' +
       'ask if they want something related done too, or what to tackle next — the way a helpful assistant ' +
       'keeps a conversation going instead of just stopping.\n' +
-      '- Keep it concise — a sentence or two for most things, more only if the result genuinely needs it.\n\n' +
+      '- Keep it concise — a sentence or two for most things, more only if the result genuinely needs it.\n' +
+      '- Punctuate it like real sentences (periods, commas, question marks) even though it\'s short — ' +
+      'that punctuation is what drives the pacing when it\'s spoken aloud, so a run-on with none of it ' +
+      'comes out flat and rushed.\n\n' +
       'The person on the other end is communicating by voice only and cannot see or type into this ' +
       'terminal at all — nothing here is a substitute for a spoken answer. If you need a decision or ' +
       'clarification from them, ask it as a normal spoken question through the reply tool and wait for ' +

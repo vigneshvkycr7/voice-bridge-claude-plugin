@@ -1,6 +1,6 @@
 {
   "name": "voice-bridge",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "Bridges a remote voice/text client (e.g. a phone app) into a live Claude Code session via the experimental Channels feature.",
   "author": {
     "name": "Vignesh"
