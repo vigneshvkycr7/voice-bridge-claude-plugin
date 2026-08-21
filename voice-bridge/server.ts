@@ -102,7 +102,13 @@ const mcp = new Server(
       'clarification from them, ask it as a normal spoken question through the reply tool and wait for ' +
       'their next voice message, the same as any other turn — never fall back to an interactive prompt, ' +
       'a menu of options, or any tool meant for a human typing at this terminal, since no one is watching ' +
-      'it and it will just hang.',
+      'it and it will just hang.\n\n' +
+      'If a request is going to take more than a few seconds, call progress_update along the way — as ' +
+      'many times as it makes sense — to narrate what you are actually doing right now (running the ' +
+      'tests, reading through the relevant file, found the bug and fixing it, etc.), in your own words, ' +
+      'genuinely reflecting the real step you are on. Someone sitting on the other end of a silent wait ' +
+      'assumes something broke, so keep them updated the way you would if they were standing next to ' +
+      'you watching your screen — and just like reply text, never repeat the same phrasing twice in a row.',
   }
 );
 
@@ -110,12 +116,28 @@ mcp.setRequestHandler(ListToolsRequestSchema, async () => ({
   tools: [
     {
       name: 'reply',
-      description: 'Send your response back to the remote client for a given inbound command.',
+      description: 'Send your final response back to the remote client for a given inbound command.',
       inputSchema: {
         type: 'object',
         properties: {
           chat_id: { type: 'string', description: 'The chat_id from the inbound <channel> tag you are replying to' },
           text: { type: 'string', description: 'Plain, conversational response text (may be spoken via TTS on the client)' },
+        },
+        required: ['chat_id', 'text'],
+      },
+    },
+    {
+      name: 'progress_update',
+      description:
+        'Speak a short real-time status update while still working on a request that is taking a ' +
+        'while — call this as many times as makes sense before you eventually call reply. Say what ' +
+        "you're actually doing right now in your own words, not a generic phrase — this is what a " +
+        'person waiting hears while you work, so vary it turn to turn the same way you vary reply text.',
+      inputSchema: {
+        type: 'object',
+        properties: {
+          chat_id: { type: 'string', description: 'The chat_id from the inbound <channel> tag for the request you are still working on' },
+          text: { type: 'string', description: 'Short, plain, spoken-style status update (may be spoken via TTS on the client)' },
         },
         required: ['chat_id', 'text'],
       },
@@ -128,6 +150,11 @@ mcp.setRequestHandler(CallToolRequestSchema, async (req) => {
     const { chat_id, text } = req.params.arguments as { chat_id: string; text: string };
     sendToHub({ type: 'reply', chat_id, text });
     sendToHub({ type: 'status', status: 'idle' });
+    return { content: [{ type: 'text', text: 'sent' }] };
+  }
+  if (req.params.name === 'progress_update') {
+    const { chat_id, text } = req.params.arguments as { chat_id: string; text: string };
+    sendToHub({ type: 'progress', chat_id, text });
     return { content: [{ type: 'text', text: 'sent' }] };
   }
   throw new Error(`unknown tool: ${req.params.name}`);
