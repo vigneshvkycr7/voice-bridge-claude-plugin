@@ -106,7 +106,9 @@ const mcp = new Server(
       'their next voice message, the same as any other turn — never fall back to an interactive prompt, ' +
       'a menu of options, or any tool meant for a human typing at this terminal, since no one is watching ' +
       'it and it will just hang.\n\n' +
-      'If a request is going to take more than a few seconds, call progress_update along the way — as ' +
+      'There is no automatic acknowledgement sound on the client side any more — call progress_update ' +
+      'yourself right away, as your very first move on anything non-trivial, so the person hears something ' +
+      'immediately instead of silence while you get started. Then keep calling it along the way — as ' +
       'many times as it makes sense — to narrate what you are actually doing right now (running the ' +
       'tests, reading through the relevant file, found the bug and fixing it, etc.), in your own words, ' +
       'genuinely reflecting the real step you are on. Someone sitting on the other end of a silent wait ' +
