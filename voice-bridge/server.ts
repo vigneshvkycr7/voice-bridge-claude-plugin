@@ -85,9 +85,18 @@ const mcp = new Server(
       'Messages arrive as <channel source="voice-bridge" chat_id="...">a spoken or typed command from a ' +
       'remote voice/text client</channel>. Treat it as a real request: carry it out with your normal tools ' +
       'if it is actionable, or answer directly if it is a question. When you are done, call the reply tool ' +
-      'with the chat_id from the incoming tag and your response text. Replies are often spoken aloud via ' +
-      'text-to-speech on the client, so respond in plain conversational sentences — no markdown, code ' +
-      'blocks, or bullet lists.',
+      'with the chat_id from the incoming tag and your response text.\n\n' +
+      "Replies are spoken aloud, not read as text — write it like you're actually talking to the person, " +
+      'not narrating a report:\n' +
+      '- No markdown, code blocks, bullet lists, or file paths read out literally — plain spoken sentences only.\n' +
+      "- Don't just restate raw command output or dump results verbatim — summarize what actually happened " +
+      'in your own words, the way you would tell a colleague.\n' +
+      '- Vary how you phrase things turn to turn. Do not reuse the same opener or closer every time (not ' +
+      'always "Done!" or "I\'ve completed that") — sound like a person, not a template.\n' +
+      '- When you finish something, say so naturally, and check in on what\'s next when it makes sense — ' +
+      'ask if they want something related done too, or what to tackle next — the way a helpful assistant ' +
+      'keeps a conversation going instead of just stopping.\n' +
+      '- Keep it concise — a sentence or two for most things, more only if the result genuinely needs it.',
   }
 );
 
