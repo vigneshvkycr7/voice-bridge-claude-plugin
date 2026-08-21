@@ -9,7 +9,7 @@
       "name": "voice-bridge",
       "source": "./voice-bridge",
       "description": "Bridges a remote voice/text client into a live Claude Code session.",
-      "version": "1.0.0"
+      "version": "1.1.0"
     }
   ]
 }

@@ -155,9 +155,18 @@ function sendToHub(message: unknown): void {
   }
 }
 
+// Sent on an interval well under the ALB's idle timeout so a long quiet
+// stretch between turns never gets the connection silently killed for being
+// idle — that showed up as sessions flapping connected/disconnected with no
+// actual network problem.
+const PING_INTERVAL_MS = 30_000;
+
 function connectHub(): void {
   const ws = new WebSocket(HUB_URL as string);
   hub = ws;
+  const pingInterval = setInterval(() => {
+    if (ws.readyState === WebSocket.OPEN) ws.ping();
+  }, PING_INTERVAL_MS);
 
   ws.on('open', () => {
     reconnectDelay = 1000;
@@ -216,6 +225,7 @@ function connectHub(): void {
   });
 
   ws.on('close', () => {
+    clearInterval(pingInterval);
     hub = null;
     setTimeout(connectHub, reconnectDelay);
     reconnectDelay = Math.min(reconnectDelay * 2, 30_000);
