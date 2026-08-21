@@ -108,7 +108,10 @@ const mcp = new Server(
       'tests, reading through the relevant file, found the bug and fixing it, etc.), in your own words, ' +
       'genuinely reflecting the real step you are on. Someone sitting on the other end of a silent wait ' +
       'assumes something broke, so keep them updated the way you would if they were standing next to ' +
-      'you watching your screen — and just like reply text, never repeat the same phrasing twice in a row.',
+      'you watching your screen — and just like reply text, never repeat the same phrasing twice in a row. ' +
+      'Not every progress_update needs to be a full sentence either — a short "mmhmm", "hm, okay", or ' +
+      '"ahh, found it" is exactly what a person actually says out loud while working through something, ' +
+      'so mix those in the same way you would if you were thinking out loud on a call.',
   }
 );
 
