@@ -1,0 +1,18 @@
+{
+  "name": "voice-bridge-channel",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Claude Code Channel plugin: bridges a remote voice/text client into a live Claude Code session.",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "ws": "^8.17.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/ws": "^8.5.10",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0"
+  }
+}

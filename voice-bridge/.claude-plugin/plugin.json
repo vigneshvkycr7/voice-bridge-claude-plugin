@@ -1,0 +1,15 @@
+{
+  "name": "voice-bridge",
+  "version": "1.0.0",
+  "description": "Bridges a remote voice/text client (e.g. a phone app) into a live Claude Code session via the experimental Channels feature.",
+  "author": {
+    "name": "Vignesh"
+  },
+  "license": "MIT",
+  "mcpServers": {
+    "voice-bridge": {
+      "command": "npx",
+      "args": ["tsx", "${CLAUDE_PLUGIN_ROOT}/server.ts"]
+    }
+  }
+}
