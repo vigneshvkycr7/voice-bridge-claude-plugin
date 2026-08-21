@@ -1,5 +1,6 @@
 {
   "name": "voice-bridge-marketplace",
+  "description": "A single Claude Code Channel plugin (voice-bridge) that bridges a remote voice/text client into a live Claude Code session.",
   "owner": {
     "name": "Vignesh"
   },
